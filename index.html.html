@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#eff8f2">
+<title>VardagAI – din gratis vardagshjälpare</title>
+<style>
+:root{--ink:#183329;--muted:#63766d;--green:#286b4d;--mint:#e8f4ec;--line:#dce8df;--paper:#fbfdfb;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(150deg,#eff8f2 0%,#fbfdfb 48%,#f5f7f2 100%);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);min-height:100vh}
+.wrap{max-width:1040px;margin:auto;padding:26px 20px 56px}.top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:34px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:20px;letter-spacing:-.5px}.logo{width:42px;height:42px;border-radius:14px;background:var(--green);color:white;display:grid;place-items:center;font-size:21px;box-shadow:0 7px 18px #286b4d2b}
+.pill{font-size:12px;font-weight:700;color:#286b4d;background:#e2f1e7;padding:8px 12px;border-radius:30px}
+.hero{max-width:680px;margin:0 auto 28px;text-align:center}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--green);font-weight:800}
+h1{font-size:clamp(34px,6vw,54px);line-height:1.04;letter-spacing:-2px;margin:13px 0}.hero p{color:var(--muted);font-size:17px;line-height:1.6;margin:0}
+.layout{display:grid;grid-template-columns:270px 1fr;gap:18px;align-items:start}
+.panel{background:#ffffffd9;border:1px solid var(--line);border-radius:22px;padding:17px;box-shadow:0 12px 34px #244b3510}
+.nav-title{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:1px;margin:2px 8px 12px}
+.tool{width:100%;display:flex;align-items:center;gap:11px;text-align:left;border:0;background:transparent;color:var(--ink);padding:12px;border-radius:13px;font:inherit;font-weight:650;cursor:pointer;margin:3px 0}
+.tool:hover,.tool.active{background:var(--mint);color:var(--green)}.ico{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:#f1f5f1;font-size:17px}.tool.active .ico{background:#d6eadc}
+.workspace{min-height:440px}.workhead{display:flex;gap:14px;align-items:center;margin-bottom:7px}.workicon{width:48px;height:48px;background:var(--mint);border-radius:15px;display:grid;place-items:center;font-size:23px}.workhead h2{font-size:22px;margin:0 0 3px;letter-spacing:-.5px}.workhead p{margin:0;color:var(--muted);font-size:13px}
+label{display:block;font-size:13px;font-weight:750;margin:19px 0 8px}
+textarea,input,select{width:100%;border:1px solid var(--line);background:#fcfefc;border-radius:13px;padding:13px 14px;font:inherit;color:var(--ink);outline:none}
+textarea{min-height:145px;resize:vertical;line-height:1.5}input:focus,textarea:focus,select:focus{border-color:#6ba483;box-shadow:0 0 0 3px #dcefe2}
+.hint{font-size:12px;color:var(--muted);margin-top:7px;line-height:1.45}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:0;border-radius:13px;padding:12px 17px;font:inherit;font-weight:750;cursor:pointer}.primary{background:var(--green);color:white}.primary:hover{background:#20583e}.secondary{background:#edf4ef;color:var(--green)}.result{margin-top:18px;background:#f3f8f4;border:1px solid var(--line);border-radius:15px;padding:15px;display:none}.result.show{display:block}.resulttop{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;font-weight:800;margin-bottom:9px}.result pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.55 inherit;margin:0;color:#365447}
+.info{margin-top:18px;padding:14px 16px;border-radius:15px;background:#f8f7ee;border:1px solid #ece8d5;color:#6d6445;font-size:12px;line-height:1.5}
+.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:23px}
+@media(max-width:720px){.wrap{padding:18px 13px 40px}.top{margin-bottom:26px}.layout{grid-template-columns:1fr}.panel{padding:12px}.nav-title{margin:2px 6px 8px}.navgrid{display:grid;grid-template-columns:1fr 1fr;gap:2px}.tool{padding:9px;font-size:13px}.workspace{min-height:0}.hero p{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand"><div class="logo">✳</div>VardagAI</div><div class="pill">GRATIS VARDAGSHJÄLP</div></header>
+<section class="hero"><div class="eyebrow">Lite enklare, varje dag</div><h1>Vad kan jag hjälpa dig med?</h1><p>Smarta verktyg för vardagens små och stora frågor. Välj ett område och få hjälp att komma vidare.</p></section>
+<main class="layout">
+<aside class="panel"><div class="nav-title">Välj hjälp</div><div class="navgrid" id="nav">
+<button class="tool active" data-tool="message"><span class="ico">✍️</span>Skrivhjälp</button>
+<button class="tool" data-tool="food"><span class="ico">🥕</span>Mat & recept</button>
+<button class="tool" data-tool="explain"><span class="ico">💡</span>Förklara enkelt</button>
+<button class="tool" data-tool="save"><span class="ico">💰</span>Spara pengar</button>
+<button class="tool" data-tool="plan"><span class="ico">📋</span>Planera & listor</button>
+</div></aside>
+<section class="panel workspace">
+<div class="workhead"><div class="workicon" id="bigicon">✍️</div><div><h2 id="title">Skrivhjälp</h2><p id="subtitle">Få hjälp att formulera dig tydligt och trevligt.</p></div></div>
+<label id="fieldlabel" for="details">Vad vill du skriva?</label>
+<textarea id="details" placeholder="Beskriv vad du vill skriva, till vem och vilken ton du vill ha…"></textarea>
+<div class="hint" id="hint">Exempel: Skriv ett vänligt sms till min hyresvärd om en droppande kran.</div>
+<label for="style">Önskad stil</label>
+<select id="style"><option>Vänlig och naturlig</option><option>Kort och tydlig</option><option>Professionell</option><option>Enkel och pedagogisk</option><option>Kreativ och inspirerande</option></select>
+<div class="actions"><button class="btn primary" id="make">Skapa AI-instruktion →</button><button class="btn secondary" id="clear">Rensa</button></div>
+<div class="result" id="result"><div class="resulttop"><span>Din färdiga instruktion</span><button class="btn secondary" id="copy">Kopiera</button></div><pre id="prompt"></pre><div class="actions"><button class="btn primary" id="openai">Öppna gratis AI-hjälp ↗</button></div><div class="hint">Kopiera instruktionen och klistra in den i AI-tjänsten. Du kan använda en kostnadsfri tjänst där du redan har ett konto.</div></div>
+<div class="info"><strong>Så fungerar gratisversionen:</strong> VardagAI skapar en tydlig instruktion som du kan använda i en AI-tjänst. Ingen betald AI-nyckel eller server behövs i den här prototypen. Själva AI-svaret hämtas inte automatiskt i appen.</div>
+</section>
+</main>
+<div class="footer">VardagAI · En enkel prototyp · Dina texter stannar i den här webbläsarfliken</div>
+</div>
+<script>
+const config={
+ message:{icon:"✍️",title:"Skrivhjälp",sub:"Få hjälp att formulera dig tydligt och trevligt.",label:"Vad vill du skriva?",placeholder:"Beskriv vad du vill skriva, till vem och vilken ton du vill ha…",hint:"Exempel: Skriv ett vänligt sms till min hyresvärd om en droppande kran.",role:"Du är en skicklig skrivassistent. Skriv ett färdigt utkast på svenska utifrån min beskrivning."},
+ food:{icon:"🥕",title:"Mat & recept",sub:"Hitta enkla måltider utifrån det du har hemma.",label:"Vilken mat eller vilka ingredienser har du?",placeholder:"Exempel: Jag har pasta, kikärtor, tomater och spenat. Vi är två personer.",hint:"Du kan också ange budget, allergier, kostönskemål och hur lång tid du har.",role:"Du är en praktisk matplanerare. Föreslå ett enkelt recept på svenska med ingrediensmängder, steg-för-steg-instruktioner, ungefärlig tillagningstid och tips för att minska matsvinn. Ta hänsyn till min beskrivning."},
+ explain:{icon:"💡",title:"Förklara enkelt",sub:"Gör krånglig information lättare att förstå.",label:"Vad vill du få förklarat?",placeholder:"Klistra in en text eller beskriv ett begrepp du undrar över…",hint:"Undvik att klistra in lösenord, personnummer eller annan känslig information.",role:"Förklara följande på enkel, tydlig svenska för en person utan förkunskaper. Dela upp svaret i korta steg och ge ett konkret exempel. Om något är osäkert, säg det tydligt."},
+ save:{icon:"💰",title:"Spara pengar",sub:"Få konkreta idéer för en billigare vardag.",label:"Vad vill du spara pengar på?",placeholder:"Exempel: Jag vill minska matkostnaden för en familj på två vuxna och ett barn.",hint:"Skriv gärna ungefärlig budget och vad som är viktigast för dig.",role:"Du är en realistisk privatekonomisk vardagscoach. Ge konkreta, lagliga och genomförbara spartips utifrån min situation. Prioritera åtgärder som inte kräver inköp. Visa gärna en enkel veckoplan och skilj uppskattningar från säkra fakta."},
+ plan:{icon:"📋",title:"Planera & listor",sub:"Förvandla tankar och måsten till en tydlig plan.",label:"Vad behöver du planera?",placeholder:"Exempel: Hjälp mig planera en stressfri vecka med jobb, städning, matinköp och träning.",hint:"Skriv vad som ska göras, när det behöver vara klart och eventuella begränsningar.",role:"Du är en strukturerad planeringsassistent. Gör en realistisk plan på svenska med prioriteringar, tydliga checklistor och rimliga tidsblock. Dela upp stora uppgifter i små steg och lämna luft för pauser."}
+};
+let current="message";
+const $=id=>document.getElementById(id);
+function choose(key){current=key;const c=config[key];document.querySelectorAll(".tool").forEach(b=>b.classList.toggle("active",b.dataset.tool===key));$("bigicon").textContent=c.icon;$("title").textContent=c.title;$("subtitle").textContent=c.sub;$("fieldlabel").textContent=c.label;$("details").placeholder=c.placeholder;$("hint").textContent=c.hint;$("details").value="";$("result").classList.remove("show");}
+$("nav").addEventListener("click",e=>{const b=e.target.closest("[data-tool]");if(b)choose(b.dataset.tool)});
+$("make").addEventListener("click",()=>{const value=$("details").value.trim();if(!value){$("details").focus();$("details").style.borderColor="#c46a54";return;}const prompt=config[current].role+"\n\nMin beskrivning:\n"+value+"\n\nÖnskad stil: "+$("style").value+"\n\nStäll en kort följdfråga om viktig information saknas. Hitta inte på fakta."; $("prompt").textContent=prompt;$("result").classList.add("show");$("result").scrollIntoView({behavior:"smooth",block:"nearest"});});
+$("clear").addEventListener("click",()=>{ $("details").value="";$("result").classList.remove("show");$("details").focus();});
+$("copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText($("prompt").textContent);$("copy").textContent="Kopierad ✓";setTimeout(()=>$("copy").textContent="Kopiera",1800);}catch(e){const r=document.createRange();r.selectNodeContents($("prompt"));const s=getSelection();s.removeAllRanges();s.addRange(r);$("copy").textContent="Markera och kopiera";}});
+$("openai").addEventListener("click",()=>window.open("https://chatgpt.com/","_blank","noopener"));
+</script>
+</body></html>
